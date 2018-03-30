@@ -32,6 +32,7 @@ class CodechefCrawler:
         problems = soup.select("span > a")
 
         for problem in problems:
+
             problem_name = problem.string
             problem_link = codechef_home_url + problem["href"]
             result = requests.get(problem_link)
@@ -59,6 +60,7 @@ class CodechefCrawler:
                             file_name = problem_name + "." + file_extension
                             solution_plain_text_url = codechef_home_url + (solution.select("pre > div > a")[0]["href"])
                             print(solution_plain_text_url)
+
                             solution_plain_text_request = requests.get(solution_plain_text_url, headers={
                                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'})
                             solution_plain_text_soup = BeautifulSoup(solution_plain_text_request.content, "html.parser")
